@@ -36,13 +36,13 @@ git '/var/archive/octohost-cookbook' do
   action :sync
 end
 
-remote_file '/tmp/chefdk.deb' do
+remote_file "#{Chef::Config[:file_cache_path]}/chefdk.deb" do
   source node['octohost']['chefdk_url']
   owner 'root'
   group 'root'
 end
 
-dpkg_package '/tmp/chefdk.deb' do
+dpkg_package "#{Chef::Config[:file_cache_path]}/chefdk.deb" do
   action :install
 end
 
